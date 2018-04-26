@@ -39,4 +39,4 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4)teacher（老师表），保存老师数据。<br/> 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5)student（学生表），保存学生数据及测试的分数和测试用时，并且通过parentid和teacherid与家长表parent及老师表teacher关联起来。<br/> 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.小程序与服务器数据库连接：小程序与服务器数据库的连接是通过后台控制器提供的url进行链接，后台通过控制器提供小程序url，小程序使用url向后台传递参数，再通过参数结合数据库查询语句对数据库操作，然后返回json数据。控制器通过映射方法给小程序使用，各控制器映射方法如下图。<br/> 
-
+![Image text](http://)
