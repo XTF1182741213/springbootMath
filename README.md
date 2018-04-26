@@ -39,4 +39,5 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4)teacher（老师表），保存老师数据。<br/> 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5)student（学生表），保存学生数据及测试的分数和测试用时，并且通过parentid和teacherid与家长表parent及老师表teacher关联起来。<br/> 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.小程序与服务器数据库连接：小程序与服务器数据库的连接是通过后台控制器提供的url进行链接，后台通过控制器提供小程序url，小程序使用url向后台传递参数，再通过参数结合数据库查询语句对数据库操作，然后返回json数据。控制器通过映射方法给小程序使用，各控制器映射方法如下图。<br/> 
-![Image text](http://)
+![Image text](https://github.com/XTF1182741213/springbootMath/blob/master/%E6%95%B0%E5%AD%A6%E9%A2%98%E6%B5%8B%E8%AF%95%E5%B0%8F%E7%A8%8B%E5%BA%8F.png)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4．后台管理与服务器连接：后台增加题目是通过将题目截图，然后利用文件上传功能上传到服务器的硬盘，用springboot项目自带的tomcat把服务器的物理路径通过虚拟路径连接起来，然后将虚拟路径放到数据库。后台管理也是使用映射，只是映射的方式与映射到小程序的方式稍有不同，不过只改变映射方式即可和小程序使用同一数据库操作语句，无需再重新写操作语句。后台管理Html使用到的映射方法如下图，该映射不再是返回json数据，而是返回html文件所需的数据。<br/>
