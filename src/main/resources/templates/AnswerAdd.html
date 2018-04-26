@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>AnswerAdd</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+<script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
+</head>
+<body class="container">
+	<br />
+	<h1>添加选项</h1> 
+	<!-- 选项图片 -->
+	<div style="position: absolute; top: 35px; left: 400px;">
+       <img id="aPreview" src="">
+   </div>
+   <div style="position: absolute; top: 35px; left: 530px;">
+       <img id="bPreview" src="">
+   </div>
+   	<div style="position: absolute; top: 35px; left: 660px;">
+       <img id="cPreview" src="">
+   </div>
+   <div style="position: absolute; top: 35px; left: 790px;">
+       <img id="dPreview" src="">
+   </div>
+   	<div style="position: absolute; top: 35px; left: 920px;">
+       <img id="ePreview" src="">
+   </div>
+   <div style="position: absolute; top: 35px; left: 1050px;">
+       <img id="fPreview" src="">
+   </div>
+   
+   
+	<br />
+	<br />
+	<div class="with:80%">
+	  
+	 
+		<form class="form-horizontal" th:action="@{/addWebAnswer}" method="post">
+			<div class="form-group">
+				<label for="a" class="col-sm-2 control-label">a</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="a" id="a" placeholder="a" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="aimg" class="col-sm-2 control-label">aimg</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="aimg" id="aimg" placeholder="aimg" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="b" class="col-sm-2 control-label">b</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="b" id="b" placeholder="b" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="bimg" class="col-sm-2 control-label">bimg</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="bimg" id="bimg" placeholder="bimg" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="c" class="col-sm-2 control-label">c</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="c" id="c"	placeholder="c" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="cimg" class="col-sm-2 control-label">cimg</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="cimg" id="cimg" placeholder="cimg" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="d" class="col-sm-2 control-label">d</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="d" id="d"
+						placeholder="d" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="dimg" class="col-sm-2 control-label">dimg</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="dimg" id="dimg" placeholder="dimg" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="e" class="col-sm-2 control-label">e</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="e" id="e"	placeholder="e" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="eimg" class="col-sm-2 control-label">eimg</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="eimg" id="eimg" placeholder="eimg" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="f" class="col-sm-2 control-label">f</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="f" id="f" placeholder="f" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="fimg" class="col-sm-2 control-label">fimg</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="fimg" id="fimg" placeholder="fimg" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="solution" class="col-sm-2 control-label">solution</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="solution" id="solution" placeholder="solution" />
+				</div>
+			</div>
+			 
+			<div class="form-group">
+				<label for="questionid" class="col-sm-2 control-label">questionid</label>
+				<div class="col-sm-10">
+					<input  type="text" class="form-control" name="questionid" id="questionid" placeholder="questionid" />
+						<script> 				    
+				             var questionID = document.getElementById("questionid");
+				             var hrefString = window.location.href;
+				             var equalIndex = hrefString.indexOf("=");
+				             var stringLength = hrefString.length;
+				             var questionNumber = hrefString.substring(equalIndex+1,stringLength);
+				             questionID.value = questionNumber;				            
+				        </script>
+				</div>
+			</div>
+           
+            
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="submit" value="提交" class="btn btn-info" /> &nbsp;
+					&nbsp; &nbsp; <input type="reset" value="重置" class="btn btn-info" />
+				</div>
+			</div>
+		</form>
+		
+	<form enctype="multipart/form-data" id="auploadForm" action="">
+	  <input id="file" onchange="aimgUpload()" type="file" name="file" style="position:absolute;top:185px;left:1000px; width: 400px">
+	</form>	
+		<form enctype="multipart/form-data" id="buploadForm" action="">
+	  <input id="file" onchange="bimgUpload()" type="file" name="file" style="position:absolute;top:285px;left:1000px; width: 400px">
+	</form>	
+		<form enctype="multipart/form-data" id="cuploadForm" action="">
+	  	<input id="file" onchange="cimgUpload()" type="file" name="file" style="position:absolute;top:380px;left:1000px; width: 400px">
+	</form>	
+		<form enctype="multipart/form-data" id="duploadForm" action="">
+	  	<input id="file" onchange="dimgUpload()" type="file" name="file" style="position:absolute;top:475px;left:1000px; width: 400px">
+	</form>	
+		<form enctype="multipart/form-data" id="euploadForm" action="">
+	  	<input id="file" onchange="eimgUpload()" type="file" name="file" style="position:absolute;top:575px;left:1000px; width: 400px">
+	</form>	
+		<form enctype="multipart/form-data" id="fuploadForm" action="">
+	  <input id="file" onchange="fimgUpload()" type="file" name="file" style="position:absolute;top:675px;left:1000px; width: 400px">
+	</form>	
+		
+
+	</div>
+</body>
+
+
+<script>
+   //选项A的图片
+    function aimgUpload() {
+        var file = document.getElementById("file");
+        if(file.value==null||file.value==""){
+            alert("文件不能为空");
+        }
+        var formData = new FormData($('#auploadForm')[0]);
+        $.ajax({
+            url: 'upload',
+            type: 'POST',
+            cache: false,
+            data:formData,
+            processData: false,
+            contentType: false,
+            success:function (data) {   
+            	//alert(data);        
+                $("#aimg").val(data);/*将服务端的图片url赋值给form表单的隐藏input标签*/
+                $("#aPreview").attr('src',data);  /*预览图片*/                    
+            },
+            error:function (data) {
+                alert(data);
+            }
+        });
+    }
+   //选项B的图片
+    function bimgUpload() {
+        var file = document.getElementById("file");
+        if(file.value==null||file.value==""){
+            alert("文件不能为空");
+        }
+        var formData = new FormData($('#buploadForm')[0]);
+        $.ajax({
+            url: 'upload',
+            type: 'POST',
+            cache: false,
+            data:formData,
+            processData: false,
+            contentType: false,
+            success:function (data) {   
+            	//alert(data);        
+                $("#bimg").val(data);/*将服务端的图片url赋值给form表单的隐藏input标签*/
+                $("#bPreview").attr('src',data);  /*预览图片*/                    
+            },
+            error:function (data) {
+                alert(data);
+            }
+        });
+    }
+  //选项C的图片
+    function cimgUpload() {
+        var file = document.getElementById("file");
+        if(file.value==null||file.value==""){
+            alert("文件不能为空");
+        }
+        var formData = new FormData($('#cuploadForm')[0]);
+        $.ajax({
+            url: 'upload',
+            type: 'POST',
+            cache: false,
+            data:formData,
+            processData: false,
+            contentType: false,
+            success:function (data) {   
+            	//alert(data);        
+                $("#cimg").val(data);/*将服务端的图片url赋值给form表单的隐藏input标签*/
+                $("#cPreview").attr('src',data);  /*预览图片*/                    
+            },
+            error:function (data) {
+                alert(data);
+            }
+        });
+    }
+  //选项D的图片
+    function dimgUpload() {
+        var file = document.getElementById("file");
+        if(file.value==null||file.value==""){
+            alert("文件不能为空");
+        }
+        var formData = new FormData($('#duploadForm')[0]);
+        $.ajax({
+            url: 'upload',
+            type: 'POST',
+            cache: false,
+            data:formData,
+            processData: false,
+            contentType: false,
+            success:function (data) {   
+            	//alert(data);        
+                $("#dimg").val(data);/*将服务端的图片url赋值给form表单的隐藏input标签*/
+                $("#dPreview").attr('src',data);  /*预览图片*/                    
+            },
+            error:function (data) {
+                alert(data);
+            }
+        });
+    }
+  //选项E的图片
+    function eimgUpload() {
+        var file = document.getElementById("file");
+        if(file.value==null||file.value==""){
+            alert("文件不能为空");
+        }
+        var formData = new FormData($('#euploadForm')[0]);
+        $.ajax({
+            url: 'upload',
+            type: 'POST',
+            cache: false,
+            data:formData,
+            processData: false,
+            contentType: false,
+            success:function (data) {   
+            	//alert(data);        
+                $("#eimg").val(data);/*将服务端的图片url赋值给form表单的隐藏input标签*/
+                $("#ePreview").attr('src',data);  /*预览图片*/                    
+            },
+            error:function (data) {
+                alert(data);
+            }
+        });
+    }
+  //选项F的图片
+    function fimgUpload() {
+        var file = document.getElementById("file");
+        if(file.value==null||file.value==""){
+            alert("文件不能为空");
+        }
+        var formData = new FormData($('#fuploadForm')[0]);
+        $.ajax({
+            url: 'upload',
+            type: 'POST',
+            cache: false,
+            data:formData,
+            processData: false,
+            contentType: false,
+            success:function (data) {   
+            	//alert(data);        
+                $("#fimg").val(data);/*将服务端的图片url赋值给form表单的隐藏input标签*/
+                $("#fPreview").attr('src',data);  /*预览图片*/                    
+            },
+            error:function (data) {
+                alert(data);
+            }
+        });
+    }
+</script>
+</html>

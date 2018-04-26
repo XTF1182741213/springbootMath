@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>QuestionList</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body class="container">
+	<br />
+	<h1>问题列表</h1>
+	<div class="form-group">
+		<div class="col-sm-2 control-label">
+			<a th:href="@{/toAddQuestion}" class="btn btn-info">增加题目</a>
+		</div>
+		<div class="col-sm-2 control-label">
+			<a th:href="@{/listAnswers}" class="btn btn-info">查看选项</a>
+		</div>
+         <!-- 关键字模糊搜索 -->
+		<div style="float: right;">
+			<form th:action="@{/searchQuestions}"
+				method="post">
+				<input style="width: 250px; height: 35px;" placeholder="请输入题目关键字"
+				th:describes=*{describes}	type="text" name="describes" th:value="*{describes}" id="describes"></input>
+				<input type="submit" class="btn btn-info" value="搜索">
+			</form>
+		</div>
+
+	</div>
+	<br />
+	<br />
+	<div class="with:80%">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>#id</th>
+					<th>问题描述</th>
+					<th>问题图片</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="question : ${questions}">
+					<th scope="row" th:text="${question.id}">1</th>
+					<td th:text="${question.describes}">问题内容content</td>
+					<td><img th:src="${question.describesimg}" style="width:auto;height:100%;"/></td>
+					<td><a th:href="@{/toAddAnswer(questionid=${question.id})}">修改选项</a></td>
+					<td><a th:href="@{/toEditQuestion(id=${question.id})}">修改题目</a></td>
+					<td><a th:href="@{/deleteQuestion(id=${question.id})}">删除</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-2 control-label">
+			<a th:href="@{/toAddQuestion}" class="btn btn-info">增加题目</a>
+		</div>
+	</div>
+
+</body>
+</html>

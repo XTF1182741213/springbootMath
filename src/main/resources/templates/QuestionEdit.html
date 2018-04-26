@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>QuestionEdit</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
+</head>
+<body class="container">
+<br/>
+<h1>修改题目</h1>
+<br/><br/>
+<div class="with:80%">
+    <form class="form-horizontal" id="uploadForm" enctype="multipart/form-data" th:action="@{/editQuestion}" th:object="${question}"  method="post">
+        <input type="hidden" name="id" th:value="*{id}" />      
+        <div class="form-group">
+            <label for="describes" class="col-sm-2 control-label">describes</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="describes"  id="describes" th:value="*{describes}" placeholder="题目内容"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="describesimg" class="col-sm-2 control-label" >describesimg</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="describesimg" id="describesimg"  th:value="*{describesimg}" placeholder="题目图片"/>
+                <input id="file" onchange="excelUpload()" value="选择图片"	type="file" name="file" style="width: 400px">
+            </div>
+        </div>
+  <!-- 图片的显示 -->
+  <div style="position: absolute; top: 220px; left: 500px;">
+    <img id="avatarPreview" th:src="*{describesimg}">
+  </div>
+  
+  
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="提交" class="btn btn-info" />
+                &nbsp; &nbsp; &nbsp;
+                <a href="/QuestionList" th:href="@{/listQuestions}" class="btn btn-info">返回</a>
+            </div>
+
+        </div>
+    </form>
+</div>
+</body>
+<script>
+    function excelUpload() {
+        var file = document.getElementById("file");
+        if(file.value==null||file.value==""){
+            alert("文件不能为空");
+        }
+        var formData = new FormData($('#uploadForm')[0]);
+        $.ajax({
+            url: 'upload',
+            type: 'POST',
+            cache: false,
+            data:formData,
+            processData: false,
+            contentType: false,
+            success:function (data) {   
+            	//alert(data);        
+                $("#describesimg").val(data);/*将服务端的图片url赋值给form表单的隐藏input标签*/
+                $("#avatarPreview").attr('src',data);  /*预览图片*/                    
+            },
+            error:function (data) {
+                alert(data);
+            }
+        });
+    }
+</script>
+</html>

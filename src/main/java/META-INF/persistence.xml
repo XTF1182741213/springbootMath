@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="math">
+		<class>cn.tengfeistudio.math.entity.Parent</class>
+		<class>cn.tengfeistudio.math.entity.Student</class>
+		<class>cn.tengfeistudio.math.entity.Teacher</class>
+		<class>cn.tengfeistudio.math.entity.Answer</class>
+		<class>cn.tengfeistudio.math.entity.Question</class>
+			<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/math"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.password" value="passwd"/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+			<property name="eclipselink.jdbc.batch-writing" value="Buffered"/>
+		</properties>
+	</persistence-unit>
+</persistence>

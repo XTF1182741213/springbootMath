@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>listAnswer</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body class="container">
+	<br />
+	<h1>选项列表</h1>
+	<br />
+	<br />
+
+	<div class="form-group">
+		<div class="col-sm-2 control-label">
+			<a  th:href="@{/listQuestions}"
+				class="btn btn-info">问题列表</a>
+		</div>
+	</div>
+	<div class="with:80%">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>#id</th>
+					<th>a</th>
+					<th>a图片</th>
+					<th>b</th>
+					<th>b图片</th>
+					<th>c</th>
+					<th>c图片</th>
+					<th>d</th>
+					<th>d图片</th>
+					<th>e</th>
+					<th>e图片</th>
+					<th>f</th>
+					<th>f图片</th>
+					<th>答案</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="answer : ${answers}">
+					<th scope="row" th:text="${answer.id}">1</th>
+					<td th:text="${answer.a}">a</td>
+					<!--  <td th:text="${answer.aimg}">aimg</td> -->
+					<td><img th:src="${answer.aimg}" style="width:auto;height:100%;"/></td>
+					<td th:text="${answer.b}">b</td>
+					<td><img th:src="${answer.bimg}" style="width:auto;height:100%;"/></td>
+					<td th:text="${answer.c}">c</td>
+					<td><img th:src="${answer.cimg}" style="width:auto;height:100%;"/></td>
+					<td th:text="${answer.d}">d</td>
+					<td><img th:src="${answer.dimg}" style="width:auto;height:100%;"/></td>
+					<td th:text="${answer.e}">e</td>
+					<td><img th:src="${answer.eimg}" style="width:auto;height:100%;"/></td>
+					<td th:text="${answer.f}">f</td>
+					<td><img th:src="${answer.fimg}" style="width:auto;height:100%;"/></td>
+					<td th:text="${answer.solution}">solution</td>
+					<td><a th:href="@{/deleteAnswer(id=${answer.id})}">删除</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-2 control-label">
+			<a  th:href="@{/listQuestions}"
+				class="btn btn-info">问题列表</a>
+		</div>
+	</div>
+
+</body>
+</html>
