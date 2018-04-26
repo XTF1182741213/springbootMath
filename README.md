@@ -1,4 +1,4 @@
-# springbootMath是<a href="https://github.com/XTF1182741213/weixinxiaochengxuMath">微信小程序数学测试的后台Math</a>
+# springbootMath是<a href="https://github.com/XTF1182741213/weixinxiaochengxuMath">微信小程序数学测试Math</a>的后台
 
 
 #数学题库存取显示方案及后台设置<br/>
@@ -41,3 +41,27 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.小程序与服务器数据库连接：小程序与服务器数据库的连接是通过后台控制器提供的url进行链接，后台通过控制器提供小程序url，小程序使用url向后台传递参数，再通过参数结合数据库查询语句对数据库操作，然后返回json数据。控制器通过映射方法给小程序使用，各控制器映射方法如下图。<br/> 
 ![Image text](https://github.com/XTF1182741213/springbootMath/blob/master/%E6%95%B0%E5%AD%A6%E9%A2%98%E6%B5%8B%E8%AF%95%E5%B0%8F%E7%A8%8B%E5%BA%8F.png)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4．后台管理与服务器连接：后台增加题目是通过将题目截图，然后利用文件上传功能上传到服务器的硬盘，用springboot项目自带的tomcat把服务器的物理路径通过虚拟路径连接起来，然后将虚拟路径放到数据库。后台管理也是使用映射，只是映射的方式与映射到小程序的方式稍有不同，不过只改变映射方式即可和小程序使用同一数据库操作语句，无需再重新写操作语句。后台管理Html使用到的映射方法如下图，该映射不再是返回json数据，而是返回html文件所需的数据。<br/>
+![Image text](https://github.com/XTF1182741213/springbootMath/blob/master/%E6%95%B0%E5%AD%A6%E6%B5%8B%E8%AF%95%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86.png)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.小程序向后台发送请求：通过以下代码实现其他页面所需方法也类似,其中getApp().globalData.domain为全局变量，这样做的好处是:如果更改服务器地址，只要在全局变量那改一个即可。<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.本项目详细设计描述如下：<br/>
+ 
+(1).配置文件<br/>
+pom包配置<br/>
+pom包里面添加jpa和thymeleaf的相关包引用<br/>
+在application.properties中添加配置<br/>
+其中propertiesspring.thymeleaf.cache=false是关闭thymeleaf的缓存，不然在开发过程中修改页面不会立刻生效需要重启，生产可配置为true。
+在项目resources目录下会有两个文件夹：static目录用于放置网站的静态内容如css、js、图片；templates目录用于放置项目使用的页面模板。<br/>
+(2).启动类<br/>
+启动类需要添加Servlet的支持<br/>
+(3).数据库层代码<br/>
+实体类映射数据库表<br/>
+继承JpaRepository类会自动实现很多内置的方法，包括增删改查。也可以根据方法名来自动生成相关sql，具体可以参考：springboot(五)：spring data jpa的使用<br/>
+(4).业务层处理<br/>
+service调用jpa实现相关的增删改查，实际项目中service层处理具体的业务代码。<br/>
+Controller负责接收请求，处理完后将页面内容返回给前端。<br/>
+(5).页面内容<br/>
+QuestionList列表<br/>
+三、	实验总结<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了便于小程序的以后维护，我们这次采用现在最新的spring+jpa+thymeleaf后台架构，通过使用jpa大大节省了sql操作语句书写。通过一个数据库操作，2种映射方式，使得微信小程序和后台管理共用一个操作方法，这样不会出现延时的情况。任何一个软件都不可能一次全部完善的，由于我们采用的架构添加功能简单，后续想添加任何功能都是非常简单的。一个项目的完成离不开团队的团结合作，经过8周的奋斗总算完成了。
+
+
